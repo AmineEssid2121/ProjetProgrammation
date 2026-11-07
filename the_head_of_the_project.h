@@ -30,7 +30,7 @@ typedef struct {
     float val_notif_cont;
     float val_occup_cont;
     int id_zone;
-    int etat; // 1 = Actif, 0 = En panne
+    bool etat; // 1 = Actif, 0 = En panne
 } Conteneur;
 
 // Structure 3 : Camion de collecte
@@ -40,7 +40,7 @@ typedef struct {
     float max_occup_cam;
     float val_occup_cam;
     int id_zone;
-    int etat_dispo; // 1 = Disponible, 0 = Indisponible
+    bool etat_dispo; // 1 = Disponible, 0 = Indisponible
 } Camion;
 
 // ==========================================

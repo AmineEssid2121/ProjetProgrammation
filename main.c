@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "the_head_of_the_project.h"
 
-int main(void) {
+int main() {
     // Lancement de la boucle d'interface
     gererMenuPrincipal();
 
