@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 // Codes de couleurs ANSI pour les alertes dans la console (Bonus)
 #define COLOR_RESET   "\033[0m"

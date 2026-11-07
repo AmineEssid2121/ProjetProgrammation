@@ -2,7 +2,7 @@
 
 // 1. Affichage visuel du menu principal
 void afficherMenuPrincipal(void) {
-    printf("\n" COLOR_CYAN "===== MENU PRINCIPAL GESTION DE LA COLLECTE DE DÉCHETS =====" COLOR_RESET "\n");
+    printf("\n" COLOR_CYAN "===== MENU PRINCIPAL GESTION DE LA COLLECTE DE DECHETS =====" COLOR_RESET "\n");
     printf("1. Gestion des zones et conteneurs\n");
     printf("2. Gestion des camions de collecte\n");
     printf("3. Operations de collecte et vidage\n");
