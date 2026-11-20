@@ -16,3 +16,19 @@
 1795086218 source:c:\users\user\desktop\projet_programmation\the_functions_of_the_project.c
 	"the_head_of_the_project.h"
 
+1795179121 source:c:\users\user\desktop\projet prog\main.c
+	<stdio.h>
+	<stdlib.h>
+	"the_head_of_the_project.h"
+
+1795206765 c:\users\user\desktop\projet prog\the_head_of_the_project.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1795206765 source:c:\users\user\desktop\projet prog\the_functions_of_the_project.c
+	"the_head_of_the_project.h"
+	<string.h>
+	<time.h>
+
