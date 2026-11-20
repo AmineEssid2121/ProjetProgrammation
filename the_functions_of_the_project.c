@@ -210,14 +210,29 @@ void ajouterConteneur(Conteneur Tab_Cont[], int *nb_c, Zone Tab_Zone[], int nb_z
     printf("Emplacement precis (ex: Avenue Habib Bourguiba) : ");
     scanf(" %[^\n]", nouveau_cont.emplacement);
 
-    printf("Capacite maximale (en Litres) : ");
-    scanf("%f", &nouveau_cont.max_occup_cont);
+    do {
+        printf("Capacite maximale (en Litres) : ");
+        scanf("%f", &nouveau_cont.max_occup_cont);
+        if (nouveau_cont.max_occup_cont <= 0) {
+            printf(COLOR_RED "Erreur : La capacite maximale doit etre superieure a 0 !\n" COLOR_RESET);
+        }
+    } while (nouveau_cont.max_occup_cont <= 0);
 
-    printf("Seuil d'alerte de remplissage (en Litres) : ");
-    scanf("%f", &nouveau_cont.val_notif_cont);
+    do {
+        printf("Seuil d'alerte de remplissage (en Litres) : ");
+        scanf("%f", &nouveau_cont.val_notif_cont);
+        if (nouveau_cont.val_notif_cont < 0 || nouveau_cont.val_notif_cont > nouveau_cont.max_occup_cont) {
+            printf(COLOR_RED "Erreur : Le seuil doit etre compris entre 0 et %.1f L !\n" COLOR_RESET, nouveau_cont.max_occup_cont);
+        }
+    } while (nouveau_cont.val_notif_cont < 0 || nouveau_cont.val_notif_cont > nouveau_cont.max_occup_cont);
 
-    printf("Niveau d'occupation actuel (en Litres) : ");
-    scanf("%f", &nouveau_cont.val_occup_cont);
+    do {
+        printf("Niveau d'occupation actuel (en Litres) : ");
+        scanf("%f", &nouveau_cont.val_occup_cont);
+        if (nouveau_cont.val_occup_cont < 0 || nouveau_cont.val_occup_cont > nouveau_cont.max_occup_cont) {
+            printf(COLOR_RED "Erreur : L'occupation doit etre comprise entre 0 et %.1f L !\n" COLOR_RESET, nouveau_cont.max_occup_cont);
+        }
+    } while (nouveau_cont.val_occup_cont < 0 || nouveau_cont.val_occup_cont > nouveau_cont.max_occup_cont);
 
     nouveau_cont.etat = true;
 
@@ -241,14 +256,29 @@ void modifierConteneur(Conteneur Tab_Cont[], int nb_c) {
             printf("Nouvel emplacement (actuel : %s) : ", Tab_Cont[i].emplacement);
             scanf(" %[^\n]", Tab_Cont[i].emplacement);
 
-            printf("Nouvelle capacite maximale en L (actuelle : %.1f) : ", Tab_Cont[i].max_occup_cont);
-            scanf("%f", &Tab_Cont[i].max_occup_cont);
+            do {
+                printf("Nouvelle capacite maximale en L (actuelle : %.1f) : ", Tab_Cont[i].max_occup_cont);
+                scanf("%f", &Tab_Cont[i].max_occup_cont);
+                if (Tab_Cont[i].max_occup_cont <= 0) {
+                    printf(COLOR_RED "Erreur : La capacite maximale doit etre superieure a 0 !\n" COLOR_RESET);
+                }
+            } while (Tab_Cont[i].max_occup_cont <= 0);
 
-            printf("Nouveau seuil d'alerte en L (actuel : %.1f) : ", Tab_Cont[i].val_notif_cont);
-            scanf("%f", &Tab_Cont[i].val_notif_cont);
+            do {
+                printf("Nouveau seuil d'alerte en L (actuel : %.1f) : ", Tab_Cont[i].val_notif_cont);
+                scanf("%f", &Tab_Cont[i].val_notif_cont);
+                if (Tab_Cont[i].val_notif_cont < 0 || Tab_Cont[i].val_notif_cont > Tab_Cont[i].max_occup_cont) {
+                    printf(COLOR_RED "Erreur : Le seuil doit etre compris entre 0 et %.1f L !\n" COLOR_RESET, Tab_Cont[i].max_occup_cont);
+                }
+            } while (Tab_Cont[i].val_notif_cont < 0 || Tab_Cont[i].val_notif_cont > Tab_Cont[i].max_occup_cont);
 
-            printf("Nouveau niveau d'occupation actuel en L (actuel : %.1f) : ", Tab_Cont[i].val_occup_cont);
-            scanf("%f", &Tab_Cont[i].val_occup_cont);
+            do {
+                printf("Nouveau niveau d'occupation actuel en L (actuel : %.1f) : ", Tab_Cont[i].val_occup_cont);
+                scanf("%f", &Tab_Cont[i].val_occup_cont);
+                if (Tab_Cont[i].val_occup_cont < 0 || Tab_Cont[i].val_occup_cont > Tab_Cont[i].max_occup_cont) {
+                    printf(COLOR_RED "Erreur : L'occupation doit etre comprise entre 0 et %.1f L !\n" COLOR_RESET, Tab_Cont[i].max_occup_cont);
+                }
+            } while (Tab_Cont[i].val_occup_cont < 0 || Tab_Cont[i].val_occup_cont > Tab_Cont[i].max_occup_cont);
 
             printf(COLOR_GREEN "Conteneur ID %d modifie avec succes !\n" COLOR_RESET, id);
             return;
@@ -710,7 +740,11 @@ void menuOperations_De_Collecte_Et_Vidage(Conteneur les_conteneur[], int nombre_
 }
 
 void OperationVidage(Conteneur les_conteneur[], int nombre_conteneur, Camion les_camion[], int nombre_camion, Historique tab_histo[], int *id_coll) {
-    printf(COLOR_CYAN "\n=====================\n" COLOR_RESET);
+    if (nombre_conteneur==0){
+        printf(COLOR_RED"\nil y a aucun conteneur a vider\n"COLOR_RESET);
+    }
+
+    else if (nombre_conteneur!=0){ printf(COLOR_CYAN "\n=====================\n" COLOR_RESET);
     printf(COLOR_CYAN "\nvidage d'un conteneur\n" COLOR_RESET);
     printf(COLOR_CYAN "\n=====================\n" COLOR_RESET);
     int id_c, id_cm, ind_c, ind_cam, bool_affich_id_cam, bool_affich_id_con;
@@ -739,6 +773,7 @@ void OperationVidage(Conteneur les_conteneur[], int nombre_conteneur, Camion les
             }
         }
     }
+}
 }
 
 void les_conteneur_disponible(Conteneur les_conteneur[], int nombre_conteneur, int *k) {
@@ -818,13 +853,13 @@ void fonction_entree_id_camion(Camion les_camion[], int nombre_camion, int *id_c
 }
 
 void confirmation_operation_vidage(Conteneur les_conteneur[], int id_c, int id_cm, int ind_c, char ch[]) {
-    printf(COLOR_ROSE "\nVoulez vous vider le conteneur d'id :%i\nqui admet un volume de dechet egale a:%f\npar le camion d'id :%i\n" COLOR_RESET, id_c, les_conteneur[ind_c].val_occup_cont, id_cm);
+    printf(COLOR_YELLOW "\nVoulez vous vider le conteneur d'id :%i\nqui admet un volume de dechet egale a:%f\npar le camion d'id :%i\n" COLOR_RESET, id_c, les_conteneur[ind_c].val_occup_cont, id_cm);
     printf(COLOR_CYAN "oui/non:" COLOR_RESET);
     scanf("%s", ch);
     while ((strcmp(ch, "non") && strcmp(ch, "oui")) != 0) {
         while (getchar() != '\n');
         printf(COLOR_RED "\nentree: oui ou non\n" COLOR_RESET);
-        printf(COLOR_ROSE "\nVoulez vous vider le conteneur d'id :%i\nqui admet un volume de dechet egale a:%f\npar le camion d'id :%i\n" COLOR_RESET, id_c, les_conteneur[ind_c].val_occup_cont, id_cm);
+        printf(COLOR_YELLOW "\nVoulez vous vider le conteneur d'id :%i\nqui admet un volume de dechet egale a:%f\npar le camion d'id :%i\n" COLOR_RESET, id_c, les_conteneur[ind_c].val_occup_cont, id_cm);
         printf(COLOR_CYAN "oui/non:" COLOR_RESET);
         scanf("%s", ch);
     }
@@ -849,7 +884,10 @@ void enregitrement_historrique_collecte(Historique tab_histo[], int id_c, int id
 }
 
 void operationdecharge(Camion les_camion[], int nombre_camion) {
-    printf(COLOR_CYAN "\n====================\n" COLOR_RESET);
+     if (nombre_camion==0){
+        printf(COLOR_RED"\nil y a aucun camion a decharger\n"COLOR_RESET);
+    }
+    if(nombre_camion!=0){ printf(COLOR_CYAN "\n====================\n" COLOR_RESET);
     printf(COLOR_CYAN "\ndecharge d un camion\n" COLOR_RESET);
     printf(COLOR_CYAN "\n====================\n" COLOR_RESET);
     int id_cm, bool_id_cam, ind_cam;
@@ -870,6 +908,7 @@ void operationdecharge(Camion les_camion[], int nombre_camion) {
             break;
         }
     }
+}
 }
 
 void les_camion_peut_etre_vider(Camion les_camion[], int nombre_camion, int *k) {
@@ -916,13 +955,13 @@ void fonction_entree_id_camion_pour_decharge(Camion les_camion[], int nombre_cam
 }
 
 void confirmation_operation_decharge(Camion les_camion[], int id_cm, char ch[], int ind_cam) {
-    printf(COLOR_ROSE "\nVoulez vous decharger le camion d'id :%i\nqui admet un volume de dechet egale a:%f\nest qui peut etre rempit jusqu a  :%f\n" COLOR_RESET, id_cm, les_camion[ind_cam].val_occup_cam, les_camion[ind_cam].max_occup_cam);
+    printf(COLOR_YELLOW "\nVoulez vous decharger le camion d'id :%i\nqui admet un volume de dechet egale a:%f\nest qui peut etre rempit jusqu a  :%f\n" COLOR_RESET, id_cm, les_camion[ind_cam].val_occup_cam, les_camion[ind_cam].max_occup_cam);
     printf(COLOR_CYAN "oui/non:" COLOR_RESET);
     scanf("%s", ch);
     while ((strcmp(ch, "non") && strcmp(ch, "oui")) != 0) {
         while (getchar() != '\n');
         printf(COLOR_RED "\nentree: oui ou non\n" COLOR_RESET);
-        printf(COLOR_ROSE "\nVoulez vous decharger le camion d'id :%i\nqui admet un volume de dechet egale a:%f\nest qui peut etre rempit jusqu a  :%f\n" COLOR_RESET, id_cm, les_camion[ind_cam].val_occup_cam, les_camion[ind_cam].max_occup_cam);
+        printf(COLOR_YELLOW "\nVoulez vous decharger le camion d'id :%i\nqui admet un volume de dechet egale a:%f\nest qui peut etre rempit jusqu a  :%f\n" COLOR_RESET, id_cm, les_camion[ind_cam].val_occup_cam, les_camion[ind_cam].max_occup_cam);
         printf(COLOR_CYAN "oui/non:" COLOR_RESET);
         scanf("%s", ch);
     }

@@ -32,3 +32,19 @@
 	<string.h>
 	<time.h>
 
+1795179121 source:c:\users\user\desktop\projet_prog\main.c
+	<stdio.h>
+	<stdlib.h>
+	"the_head_of_the_project.h"
+
+1795206765 c:\users\user\desktop\projet_prog\the_head_of_the_project.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1795212516 source:c:\users\user\desktop\projet_prog\the_functions_of_the_project.c
+	"the_head_of_the_project.h"
+	<string.h>
+	<time.h>
+
