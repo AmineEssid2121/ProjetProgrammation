@@ -6,15 +6,11 @@
 #include <string.h>
 #include <stdbool.h>
 
-// Codes de couleurs ANSI pour les alertes dans la console (Bonus)
+#define COLOR_RED     "\033[31m"
+#define COLOR_GREEN   "\033[32m"
+#define COLOR_CYAN    "\033[94m"
 #define COLOR_RESET   "\033[0m"
-#define COLOR_RED     "\033[1;31m"
-#define COLOR_GREEN   "\033[1;32m"
-#define COLOR_CYAN    "\033[1;36m"
-
-// ==========================================
-// 1. DÉFINITION DES 3 STRUCTURES DU PROJET
-// ==========================================
+#define MAX_ITEMS 50
 
 // Structure 1 : Zone de collecte
 typedef struct {
@@ -31,7 +27,7 @@ typedef struct {
     float val_notif_cont;
     float val_occup_cont;
     int id_zone;
-    bool etat; // 1 = Actif, 0 = En panne
+    bool etat; // true (1) = Actif, false (0) = En panne
 } Conteneur;
 
 // Structure 3 : Camion de collecte
@@ -41,18 +37,36 @@ typedef struct {
     float max_occup_cam;
     float val_occup_cam;
     int id_zone;
-    bool etat_dispo; // 1 = Disponible, 0 = Indisponible
+    bool etat_dispo; // true (1) = Disponible, false (0) = Indisponible
 } Camion;
 
 // ==========================================
-// 2. PROTOTYPES DES FONCTIONS D'INTERFACE
+// 2. PROTOTYPES DES FONCTIONS
 // ==========================================
 
 void afficherMenuPrincipal(void);
 void gererMenuPrincipal(void);
-void menuGestionZonesConteneurs(void);
+
+
 void menuGestionCamions(void);
 void menuOperationsCollecte(void);
 void menuStatistiquesAlertes(void);
+
+//choix 1:
+void menuGestionZonesConteneurs(Zone Tab_Zone[], int *nb_zones, Conteneur Tab_Cont[], int *nb_cont);
+void ajouterZoneTab(Zone TabZone[], Zone nouvelle_zone, int *n);
+
+void ajouterZone(Zone Tab_Zone[], int *n);
+void afficherZones(Zone Tab_Zone[], int nbrZ);
+
+void ajouterConteneurTab(Conteneur Tab_Cont[], Conteneur nouveau_cont, int *nb_c);
+void ajouterConteneur(Conteneur Tab_Cont[], int *nb_c, Zone Tab_Zone[], int nb_z);
+
+void modifierConteneur(Conteneur Tab_Cont[], int nb_c);
+void supprimerConteneur(Conteneur Tab_Cont[], int *nb_c);
+void afficherConteneurs(Conteneur Tab_Cont[], int nb_c);
+void afficherConteneursParZone(Conteneur Tab_Cont[], int nb_c, Zone Tab_Zone[], int nb_z);
+void changerEtatConteneur(Conteneur Tab_Cont[], int nb_c);
+
 
 #endif // THE_HEAD_OF_THE_PROJECT_H
