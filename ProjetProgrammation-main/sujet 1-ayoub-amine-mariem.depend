@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1794081863 source:c:\users\user\desktop\projet_programmation\main.c
+	<stdio.h>
+	<stdlib.h>
+	"the_head_of_the_project.h"
+
+1794087448 c:\users\user\desktop\projet_programmation\the_head_of_the_project.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1794067677 source:c:\users\user\desktop\projet_programmation\functions.c
+	"the_head_of_the_project.h"
+
+1794087305 source:c:\users\user\desktop\projet_programmation\the_functions_of_the_project.c
+	"the_head_of_the_project.h"
+
+1795170869 source:c:\users\user\downloads\projetprogrammation-main (1)\projetprogrammation-main\main.c
+	<stdio.h>
+	<stdlib.h>
+	"the_head_of_the_project.h"
+	<string.h>
+
+1795170869 c:\users\user\downloads\projetprogrammation-main (1)\projetprogrammation-main\the_head_of_the_project.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1795170869 source:c:\users\user\downloads\projetprogrammation-main (1)\projetprogrammation-main\the_functions_of_the_project.c
+	"the_head_of_the_project.h"
+	<string.h>
+	<time.h>
+
